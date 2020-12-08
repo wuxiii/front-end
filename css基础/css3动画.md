@@ -35,7 +35,7 @@ z 可以取值
 - skew(x-angle,y-angle) 定义 2D 的倾斜转换，沿 x 轴 y 轴,可分开使用 skewX()/skewY()
 - matrix(a,b,c,d,e,f) ef 分别控制 xy 轴的位移，ad 控制在 xy 轴方向的缩放比。translate(30,30) = matrix(~~0,0,0,0~~,30,30)，scale(s1x,s2y) = matrix(s1,~~0,0~~,s2,~~0,0~~)
 
-参考<https://www.zhangxinxu.com/wordpress/2012/06/css3-transform-matrix-%E7%9F%A9%E9%98%B5/>
+参考[理解 CSS3 transform 中的 Matrix(矩阵)](https://www.zhangxinxu.com/wordpress/2012/06/css3-transform-matrix-%E7%9F%A9%E9%98%B5/)
 
 ### transition 用法
 
