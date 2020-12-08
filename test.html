@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta http-equiv="refresh" content="10;url=https://baidu.com" /> -->
+    <meta http />
+    <title>Document</title>
+  </head>
+  <style>
+    div {
+      height: 100px;
+      width: 100px;
+    }
+    #div1 {
+      background-color: aqua;
+      margin-bottom: 20px;
+      margin-left: 20px;
+      border: 10px solid black;
+    }
+    #div2 {
+      background-color: beige;
+      margin-top: 40px;
+    }
+    #div3 {
+      background-color: blue;
+      margin-left: 30px;
+      border: 10px solid red;
+    }
+    #div4 {
+      background: tomato;
+      width: 10px;
+      height: 100px;
+    }
+    .green {
+      line-height: 1.1;
+      border: solid limegreen;
+    }
+
+    .red {
+      line-height: 1.1em;
+      border: solid rgb(97, 94, 94);
+      visibility: hidden;
+    }
+
+    h1 {
+      font-size: 30px;
+    }
+
+    .box {
+      width: 18em;
+      display: inline-block;
+      vertical-align: top;
+      font-size: 15px;
+    }
+
+    #animate {
+      width: 100px;
+      height: 100px;
+      background: red;
+      position: relative;
+      animation: myfirst alternate 2s infinite 5s;
+      -moz-animation: myfirst 5s; /* Firefox */
+      -webkit-animation: myfirst 5s; /* Safari and Chrome */
+      -o-animation: myfirst 5s; /* Opera */
+    }
+
+    @keyframes myfirst {
+      0% {
+        background: red;
+        left: 0px;
+        top: 0px;
+      }
+      25% {
+        background: yellow;
+        left: 200px;
+        top: 0px;
+      }
+      50% {
+        background: blue;
+        left: 200px;
+        top: 200px;
+      }
+      75% {
+        background: green;
+        left: 0px;
+        top: 200px;
+      }
+      100% {
+        background: red;
+        left: 0px;
+        top: 0px;
+      }
+    }
+
+    @-moz-keyframes myfirst /* Firefox */ {
+      0% {
+        background: red;
+        left: 0px;
+        top: 0px;
+      }
+      25% {
+        background: yellow;
+        left: 200px;
+        top: 0px;
+      }
+      50% {
+        background: blue;
+        left: 200px;
+        top: 200px;
+      }
+      75% {
+        background: green;
+        left: 0px;
+        top: 200px;
+      }
+      100% {
+        background: red;
+        left: 0px;
+        top: 0px;
+      }
+    }
+
+    @-webkit-keyframes myfirst /* Safari and Chrome */ {
+      0% {
+        background: red;
+        left: 0px;
+        top: 0px;
+      }
+      25% {
+        background: yellow;
+        left: 200px;
+        top: 0px;
+      }
+      50% {
+        background: blue;
+        left: 200px;
+        top: 200px;
+      }
+      75% {
+        background: green;
+        left: 0px;
+        top: 200px;
+      }
+      100% {
+        background: red;
+        left: 0px;
+        top: 0px;
+      }
+    }
+
+    @-o-keyframes myfirst /* Opera */ {
+      0% {
+        background: red;
+        left: 0px;
+        top: 0px;
+      }
+      25% {
+        background: yellow;
+        left: 200px;
+        top: 0px;
+      }
+      50% {
+        background: blue;
+        left: 200px;
+        top: 200px;
+      }
+      75% {
+        background: green;
+        left: 0px;
+        top: 200px;
+      }
+      100% {
+        background: red;
+        left: 0px;
+        top: 0px;
+      }
+    }
+  </style>
+  <body>
+    <div id="div4">10px</div>
+    <div id="div1">
+      <div id="div3"></div>
+    </div>
+    <div id="div2"></div>
+    <div class="box green">
+      <h1>Avoid unexpected results by using unitless line-height.</h1>
+      length and percentage line-heights have poor inheritance behavior ...
+    </div>
+
+    <div class="box red">
+      <h1>Avoid unexpected results by using unitless line-height.</h1>
+      length and percentage line-heights have poor inheritance behavior ...
+    </div>
+    <div id="animate"></div>
+  </body>
+</html>
