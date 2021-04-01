@@ -99,3 +99,31 @@ server{
     include /etc/nginx/sites-enabled/*;
 }
 ```
+
+## location 中 root 和 alias 的区别
+
+root 和 alias 的主要区别是：
+
+- 使用 root，实际的路径就是：root 值 + location 值。
+- 使用 alias，实际的路径就是：alias 值。
+- alias 只能位于 location 块中，root 可以不放在 location 中，root 会自动往上查找。
+
+如：`http://47.116.134.xxx/static/a.jpg`
+
+它在服务器的路径是：/var/www/app/static/a.jpg
+
+那么用 root 的配置是：
+
+```
+location /static/ {
+  root /var/www/app/;
+}
+```
+
+用 alias 的配置就是：
+
+```
+location /static/ {
+  alias /var/www/app/static/;
+}
+```

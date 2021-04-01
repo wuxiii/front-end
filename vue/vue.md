@@ -19,8 +19,8 @@
       new Vue({
         data: {
           company: {
-            name: "拉勾",
-            address: "中关村创业大街籍海楼4层",
+            name: "name",
+            address: "some address",
           },
         },
         render(h) {

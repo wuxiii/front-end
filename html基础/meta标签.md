@@ -55,5 +55,5 @@ name 的值
 js 获取 data 的数据
 
 ```js
-document.getElementById("#bird"), getAttribute("data-animal-type");
+document.getElementById("#bird").getAttribute("data-animal-type");
 ```

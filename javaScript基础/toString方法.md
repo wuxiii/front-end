@@ -37,3 +37,28 @@ function f() {}.bind(0)
 Function("a", "b")
 //构造器函函数 toString result："function anonymous(a\n) {\nb\n}"
 ```
+
+```js
+先定义一个当前页面全局的一个变量接受 table
+var table = layui.tabel
+
+然后请求数据
+ajax(url,function(){
+  //回调函数中调用 table.render
+  if(data){
+  table.render
+  }
+})
+// 此时第一个过程就完成了
+// 第二个过程，提交的完成后重新获取数据，这里使用ajax去提交时的流程
+ajax(uri,function(){
+  // 提交成功后
+  if(data){
+    //这个ajax是获取table的数据，要区别这两个请求
+    ajax(uri,function(){
+        //再调用tabel.reload()
+
+    })
+  }
+})
+```
