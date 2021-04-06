@@ -10,9 +10,9 @@
 
 <!-- prettier-ignore -->
 - [construct()](#construct) 
-- [componentDidUpdate()](#componentdidupdate) 
-- [shouldComponentUpdate()](#shouldcomponentupdate) 
 - [static getDerivedStateFromProps()](#static-getderivedstatefromprops)
+- render()
+- componentDidMount()
 
 > UNSAFE_componentWillMount()已被标记为过期
 

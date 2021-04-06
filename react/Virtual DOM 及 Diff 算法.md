@@ -4,18 +4,18 @@
 
 使用 React 就一定会写 JSX，JSX 到底是什么呢？它是一种 JavaScript 语法的扩展，React 使用它来描述用户界面长成什么样子。虽然它看起来非常像 HTML，但它确实是 JavaScript 。在 React 代码执行之前，Babel 会对将 JSX 编译为 React API.
 
-```react
+```js
 <div className="container">
   <h3>Hello React</h3>
   <p>React is great </p>
 </div>
 ```
 
-```react
+```js
 React.createElement(
   "div",
   {
-    className: "container"
+    className: "container",
   },
   React.createElement("h3", null, "Hello React"),
   React.createElement("p", null, "React is great")
@@ -42,14 +42,14 @@ React.createElement(
 
 可以把 Virtual DOM 对象理解为 DOM 对象的副本，但是它不能直接显示在屏幕上。
 
-```react
+```js
 <div className="container">
   <h3>Hello React</h3>
   <p>React is great </p>
 </div>
 ```
 
-```react
+```js
 {
   type: "div",
   props: { className: "container" },
@@ -92,19 +92,19 @@ Virtual DOM 对象的更新和比较仅发生在内存中，不会在视图中�
 
 <img src="./images/12.png" style="margin: 20px 0;width: 80%"/>
 
-```react
+```js
 <div id="container">
-	<p>Hello React</p>
+  <p>Hello React</p>
 </div>
 ```
 
-```react
+```js
 <div id="container">
-	<p>Hello Angular</p>
+  <p>Hello Angular</p>
 </div>
 ```
 
-```react
+```js
 const before = {
   type: "div",
   props: { id: "container" },
@@ -112,15 +112,13 @@ const before = {
     {
       type: "p",
       props: null,
-      children: [
-        { type: "text", props: { textContent: "Hello React" } }
-      ]
-    }
-  ]
-}
+      children: [{ type: "text", props: { textContent: "Hello React" } }],
+    },
+  ],
+};
 ```
 
-```react
+```js
 const after = {
   type: "div",
   props: { id: "container" },
@@ -128,19 +126,17 @@ const after = {
     {
       type: "p",
       props: null,
-      children: [
-        { type: "text", props: { textContent: "Hello Angular" } }
-      ]
-    }
-  ]
-}
+      children: [{ type: "text", props: { textContent: "Hello Angular" } }],
+    },
+  ],
+};
 ```
 
 ### 5. 创建 Virtual DOM
 
 在 React 代码执行前，JSX 会被 Babel 转换为 React.createElement 方法的调用，在调用 createElement 方法时会传入元素的类型，元素的属性，以及元素的子元素，createElement 方法的返回值为构建好的 Virtual DOM 对象。
 
-```react
+```js
 {
   type: "div",
   props: null,
@@ -148,7 +144,7 @@ const after = {
 }
 ```
 
-```react
+```js
 /**
  * 创建 Virtual DOM
  * @param {string} type 类型
@@ -156,18 +152,18 @@ const after = {
  * @param  {createElement[]} children 子元素
  * @return {object} Virtual DOM
  */
-function createElement (type, props, ...children) {
-	return {
+function createElement(type, props, ...children) {
+  return {
     type,
     props,
-    children
-  }
+    children,
+  };
 }
 ```
 
 从 createElement 方法的第三个参数开始就都是子元素了，在定义 createElement 方法时，通过 `...children` 将所有的子元素放置到 children 数组中。
 
-```react
+```js
 const virtualDOM = (
   <div className="container">
     <h1>你好 Tiny React</h1>
@@ -183,8 +179,8 @@ const virtualDOM = (
     <h3>这个将会被删除</h3>
     2, 3
   </div>
-)
-console.log(virtualDOM)
+);
+console.log(virtualDOM);
 ```
 
 通过以上代码测试，发现返回的 Virtual DOM 存在一些问题，第一个问题是文本节点被直接放入到了数组中
@@ -193,15 +189,15 @@ console.log(virtualDOM)
 
 而我们期望是文本节点应该是这样的
 
-```react
+```js
 children: [
   {
     type: "text",
     props: {
-      textContent: "React is great"
-    }
-  }
-]
+      textContent: "React is great",
+    },
+  },
+];
 ```
 
 通过以下代码对 Virtual DOM 进行改造，重新构建 Virtual DOM。
@@ -776,7 +772,7 @@ export default class Component {
 
 在 setState 方法中可以通过调用 this.render 方法获取更新后的 Virtual DOM，由于 setState 方法被子类调用，this 指向子类，所以此处调用的是子类的 render 方法。
 
-```react
+```js
 // Component.js
 setState(state) {
   // setState 方法被子类调用 此处this指向子类
