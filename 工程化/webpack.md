@@ -135,12 +135,15 @@ webpack 会找到对应的 loader 去解析资源
 - html-webpack-plugin 自动生成 html
 - clean-webpack-plugin 清除生成的文件
 - copy-webpack-plugin 拷贝资源文件，一般用于拷贝静态资源文件，为了提高打包效率，建议不要在开发环境中使用
+- DefinePlugin 允许在编译时创建配置的全局对象，是一个 webpack 内置的插件，不需要安装
 
 ```js
 // 引入plugin
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const { DefinePlugun } = require('webpack')
+
 module.exports = {
     mode:'production'
     entry:'.scr/index.js',
@@ -173,6 +176,9 @@ module.exports = {
             //指定拷贝目录
               "pbulic"
         ])
+         new DefinePlugin({
+            BASE_URL:'"./"'
+        })
     ]
 }
 ```
@@ -244,3 +250,16 @@ module.exports = {
 
 }
 ```
+
+#### webpack-dev-server 中的代理
+
+proxy 的属性名称是需要被代理的请求路径前缀，一般为了辨别都会设置前缀为/api，值为对应的代理匹配规则，对应如下：
+
+- target：表示的是代理到的目标地址
+- pathRewrite：默认情况下，我们的 /api-hy 也会被写入到 URL 中，如果希望删除，可以使用 pathRewrite
+- secure：默认情况下不接收转发到 https 的服务器上，如果希望支持，可以设置为 false
+- changeOrigin：它表示是否更新代理后请求的 headers 中 host 地址
+
+#### proxy 工作原理
+
+proxy 工作原理实质上是利用 http-proxy-middleware 这个 http 代理中间件，实现请求转发给其他服务器
