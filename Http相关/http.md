@@ -119,12 +119,14 @@ TLS（Transport Layer Security，传输层安全）
 ### http1.1 与 http2.0
 
 - 二进制分帧：在二进制分帧层上，http2.0 会将所有传输信息分割为更小的消息和帧，并对它们采用二进制格式的编码将其封装，新增的二进制分帧层同时也能够保证 http 的各种动词，方法，首部都不受影响，兼容上一代 http 标准
-- 多路复用 (Multiplexing) / 连接共享:在 http1.1 中，浏览器客户端在同一时间，针对同一域名下的请求有一定数量的限制。多路复用允许同时通过单一的 http/2 连接发起多重的请求-响应消息
+- 多路复用 (Multiplexing) / 连接共享:在 http1.1 中，浏览器客户端在同一时间，针对同一域名下的建立的 tcp 连接数量有限制,chrome 一般是 6 个,为了提高访问速度,http1.1 采用 HTTP Pipelining 技术,但是这个技术会出现很多问题,首先有些代理服务器不能正确的处理 HTTP Pipelining,其次正确的流水线实现是复杂的,所以现代浏览器默认是不开启 HTTP Pipelining 的。多路复用允许同时通过单一的 http/2 连接发起多重的请求-响应消息,多个 HTTP 请求可以在同一个 TCP 连接中并行进行
 - 头部压缩：http1.x 的头带有大量信息，而且每次都要重复发送。http/2 使用 encoder 来减少需要传输的 header 大小，通讯双方各自缓存一份头部字段表，既避免了重复 header 的传输，又减小了需要传输的大小。
 - 服务端推送
 
+HTTP/1.1 规范中规定了 Pipelining :一个支持持久连接的客户端可以在一个连接中发送多个请求（不需要等待任意请求的响应）。收到请求的服务器必须按照请求收到的顺序发送响应。
+
 > 参考资料
 >
-> - https://zhuanlan.zhihu.com/p/89471776
-> - https://www.jianshu.com/p/1eb384ea0aef
-> - https://www.zhihu.com/question/34074946
+> - [深入理解 http2.0 协议，看这篇就够了](https://zhuanlan.zhihu.com/p/89471776)
+> - [一篇文章读懂 HTTP1.0 HTTP1.1 HTTP2.0 HTTPS](https://www.jianshu.com/p/1eb384ea0aef)
+> - [HTTP/2 相比 1.0 有哪些重大改进](https://www.zhihu.com/question/34074946)

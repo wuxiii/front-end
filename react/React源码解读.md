@@ -159,7 +159,7 @@
 
     删除 node_modules 文件夹，执行 npm install
 
-## 2. 创建 React 元素
+## 2. 创建 React 元素（jsx转换为ReactElement的过程）
 
 JSX 被 Babel 编译为 React.createElement 方法的调用，createElement 方法在调用后返回的就是 ReactElement，就是 virtualDOM。
 

@@ -96,9 +96,20 @@
         top: 0px;
       }
     }
+
+    .square {
+      width: 100px;
+      background: green;
+    }
+    .square:after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
   </style>
 
   <body>
+    <div class="square"></div>
     <div id="div4">10px</div>
     <div id="div1">
       <div id="div3"></div>
@@ -117,4 +128,21 @@
     <div id="animate"></div>
     <div id="app">{{ message }}</div>
   </body>
+  <script>
+    var div = document.querySelector("#div3");
+    div.addEventListener("click", function () {
+      console.log("111111");
+      setTimeout(() => {
+        console.log("2222222");
+      });
+      Promise.resolve().then(console.log("33333"));
+    });
+    div.addEventListener("click", function () {
+      console.log("444444");
+      setTimeout(() => {
+        console.log("555555");
+      });
+      Promise.resolve().then(console.log("666666"));
+    });
+  </script>
 </html>

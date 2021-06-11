@@ -127,3 +127,23 @@ location /static/ {
   alias /var/www/app/static/;
 }
 ```
+
+## 代理请求
+
+可用来转发请求.例如站点 a.com 有个请求 A:`http://a.com/st/do` ,则会被 nginx 转发请求到 proxyA:`http://139.9.111.9:80/st/do`.即请求 A 实际是在请求 B.注意:在 proxy_pass 为 ip 的时候一定要加端口.
+
+可通过此配置做负载均衡和解决跨域问题
+
+```
+ location /st/ {
+    add_header Content-disposition attachment;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Forwarded-For $remote_addr;
+    proxy_pass http://139.9.111.9:80;
+    }
+```
+
+相关链接:
+
+[正向代理与反向代理](https://zhuanlan.zhihu.com/p/69072041)
